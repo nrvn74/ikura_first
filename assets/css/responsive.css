@@ -1,0 +1,14 @@
+@media (min-width: 940px) {
+  #nav-toggle {
+    display: none;
+  }
+}
+@media (min-width: 769px) {
+  .menu-categories {
+    scroll-behavior: initial;
+  }
+  .modals .modal .modal-inner .modal-content .dish-photo {
+    overflow: hidden;
+    border-bottom-right-radius: var(--border-large);
+  }
+}/*# sourceMappingURL=responsive.css.map */
