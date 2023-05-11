@@ -12,7 +12,6 @@
     <header class="header">
         <div class="header-inner">
             <button id="nav-toggle"><span></span></button>
-            <div class="logo"><img src="./assets/images/logo.svg" alt=""></div>
             <div class="navigation">
                 <nav class="header-nav">
                     <ul>
@@ -22,6 +21,7 @@
                     </ul>
                 </nav>
             </div>
+            <div class="logo"><img src="./assets/images/logo.svg" alt=""></div>
             <div class="actions"></div>
         </div>
     </header>
@@ -43,12 +43,12 @@
         <section class="menu-head" id="menu">
             <div class="menu-head-inner">
                 <div class="menu-search">
-                    <button class="menu-search-icon">
+                    <button class="menu-search-toggle">
                         <svg width="16" height="17" viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" clip-rule="evenodd" d="M12.5902 6.29508C12.5902 7.69412 12.1338 8.98656 11.3618 10.0316L15.6159 14.2858C16.128 14.7979 16.128 15.6283 15.6159 16.1405C15.1037 16.6526 14.2733 16.6526 13.7612 16.1405L9.39562 11.7749C8.4804 12.2939 7.42234 12.5902 6.29508 12.5902C2.8184 12.5902 0 9.77176 0 6.29508C0 2.8184 2.8184 0 6.29508 0C9.77176 0 12.5902 2.8184 12.5902 6.29508ZM6.29508 10.4918C8.61287 10.4918 10.4918 8.61287 10.4918 6.29508C10.4918 3.9773 8.61287 2.09836 6.29508 2.09836C3.9773 2.09836 2.09836 3.9773 2.09836 6.29508C2.09836 8.61287 3.9773 10.4918 6.29508 10.4918Z" fill="white"/>
                         </svg>                                
                     </button>
-                    <input type="text" class="menu-search-input">
+                    <input type="text" class="menu-search-input" id="menu-search" placeholder="Найти...">
                     <button class="menu-search-clear">
                         <svg width="16" height="17" viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M1.55577 0.932364C1.19987 0.57646 0.622833 0.57646 0.266929 0.932364C-0.0889762 1.28827 -0.0889762 1.8653 0.266929 2.22121L6.71116 8.66544L0.266929 15.1097C-0.0889762 15.4656 -0.0889762 16.0426 0.266929 16.3985C0.622833 16.7544 1.19987 16.7544 1.55577 16.3985L8 9.95428L14.4442 16.3985C14.8001 16.7544 15.3772 16.7544 15.7331 16.3985C16.089 16.0426 16.089 15.4656 15.7331 15.1097L9.28885 8.66544L15.7331 2.22122C16.089 1.86531 16.089 1.28828 15.7331 0.932371C15.3772 0.576466 14.8001 0.576466 14.4442 0.932371L8 7.37659L1.55577 0.932364Z" fill="white"/>

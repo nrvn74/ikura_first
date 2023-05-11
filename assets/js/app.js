@@ -5,7 +5,7 @@
     function setProperties(){
         $(':root').css({
             '--header-height': $('header').innerHeight() + 'px',
-            '--header-innerHeight': $('header .header-inner').innerHeight() + 'px',
+            '--header-inner-height': $('.header .header-inner').innerHeight() + 'px',
         });
     
         $('.menu-head').css('min-height', $('.menu-head').innerHeight() + 'px');
@@ -35,21 +35,30 @@
     
     function attachMenuCategories(){
         let categories = $('.menu-head-inner');
-        let offset = categories.offset().top - $('header').innerHeight();
-        let isAppended = false, isMenuHidden = false, lastScroll = 0, delta = 5;
+        let headerHeight = $('header').innerHeight();
+        let offset = categories.offset().top - headerHeight;
+        let isMenuTransparent = true, isAppended = false, isMenuHidden = false, lastScroll = 0, delta = 5;
     
         $(window).scroll(function(){
             let scroll = $(window).scrollTop();
 
+            if(scroll >= headerHeight && isMenuTransparent){
+                $('header').addClass('header-onmove');
+                isMenuTransparent = false;
+            } else if(scroll <= headerHeight && !isMenuTransparent){
+                $('header').removeClass('header-onmove');
+                isMenuTransparent = true;
+            }
+
             if(scroll >= offset && !isAppended){
                 $('header').append(categories);
-                $('header').addClass('has-categories').addClass('menu-hidden');
+                $('header').addClass('has-categories').addClass('menu-hidden').removeClass('header-open');
     
                 isAppended = true;
                 isMenuHidden = true;
             } else if(scroll < offset && isAppended){
                 $('.menu-head').append(categories);
-                $('header').removeClass('has-categories').removeClass('menu-hidden');
+                $('header').removeClass('has-categories').removeClass('menu-hidden').removeClass('header-open');
     
                 isAppended = false;
                 isMenuHidden = false;
@@ -57,7 +66,7 @@
             
             if(isAppended && Math.abs(lastScroll - scroll) >= delta){
                 if (scroll > lastScroll && !isMenuHidden){
-                    $('header').addClass('menu-hidden');
+                    $('header').addClass('menu-hidden').removeClass('header-open');
                     isMenuHidden = true;
                 } else if(scroll < lastScroll && isMenuHidden) {
                     $('header').removeClass('menu-hidden');
@@ -117,16 +126,48 @@
     }
     
     moveCategoriesOnScroll();
+
+    function menuSearch(){
+        let wrapper = $('.menu-search');
+        let input = $('#menu-search');
+
+        $('.menu-search-toggle').click(() => {
+            wrapper.toggleClass('active');
+            input.focus();
+        });
+        $('.menu-search-clear').click(() => {
+            input.val('');
+            wrapper.removeClass('active');
+        });
+
+        $(input).keyup(function(){
+            if(input.val().length < 3) return;
+
+            let search = input.val();
+            let categories = $('.dish-block');
+
+            if(!categories) return;
+
+            // categories.forEach(function(){
+
+            // });
+        });
+    }
+
+    menuSearch();
     
     $(document).on('click', '.add-to-cart-button', function(){
         if($(this).hasClass('added')) return;
     
         $(this).addClass('added');
     });
+
+    $('#nav-toggle').click(() => {
+        $('header').toggleClass('header-open');
+    });
     
     $(document).ready(function(){
         setProperties();
-    
         attachMenuCategories();
     
         $('.menu-category-selector').click(function(){
@@ -155,6 +196,10 @@
         $('body').click(function(e){
             if($(e.target).is('.modal-inner')){
                 $(e.target).parent().toggleClass('open').fadeToggle(300);
+            }
+
+            if($('header').hasClass('header-open') && $(e.target).is('button, nav, li') === false){
+                $('header').removeClass('header-open');
             }
         }); 
     });
