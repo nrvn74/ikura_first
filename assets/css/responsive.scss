@@ -10,3 +10,124 @@
         }
     }
 }
+
+@media(min-width: 576px) and (max-width: 920px){
+    :root{
+        --font-size-small: 12px;  
+        --font-size-normal: 14px;
+        --container-paddings: 40px;
+    }
+    h1, h2{
+        font-size: 32px;
+    }
+    .dish-block .dish-block-container .dish-item{
+        width: calc(50% - 20px);
+    }
+}
+
+@media(max-width: 575px){
+    h1, h2{
+        font-size: 26px;
+        margin-bottom: .875em;
+    }
+    :root {
+        --container-paddings: 20px;
+        --font-size-tiny: 10px;
+        --font-size-small: 12px;  
+        --font-size-normal: 14px;
+        --border-small: 10px;
+        --border-normal: 14px;
+        --border-medium: 16px;
+        --border-large: 22px;
+        --icon-size-small: 12px;
+        --icon-size-normal: 18px;
+    }
+
+    .header{
+        // padding: 5px 0;
+
+        .header-inner{
+            // padding: 5px var(--container-paddings);
+
+            .logo{
+                margin-right: unset;
+                max-width: 40%;
+            }
+            .actions{
+                display: none;
+            }
+        }
+    }
+
+    .index-top .top-inner{
+        display: block;
+        margin: 0;
+
+        .content{
+            width: 100%;
+            margin: 0;
+            margin-bottom: 3.45em;
+        }
+        .photo{
+            width: 100%;
+            margin: 0;
+        }
+    }
+
+    .menu-head{
+        padding: 0;
+    }
+    .menu-head-inner .menu-search.active{
+        width: 100%;
+    }
+
+    .dish-block .dish-block-container{
+        display: block;
+        margin: 0;
+        
+        .dish-item{
+            display: flex;
+            align-items: stretch;
+            width: 100%;
+            margin: 0;
+
+            .dish-photo{
+                width: 40%;
+                height: auto;
+            }
+            .dish-content{
+                width: 60%;
+                padding: 15px;
+            }
+            &:not(:last-child){
+                margin-bottom: 20px;
+            }
+        }
+    }
+
+    .modals{
+
+        .modal{
+
+            .modal-inner{
+                justify-content: flex-end;
+                padding-top: 15vh;
+
+                .modal-content{
+                    display: block;
+                    border-radius: var(--border-large) var(--border-large) 0 0;
+
+                    .dish-photo{
+                        width: 100%;
+                        height: auto;
+                        aspect-ratio: 16/10;
+                    }
+                    .dish-content{
+                        width: 100%;
+                        padding: 20px;
+                    }
+                }
+            }
+        }
+    }
+}
