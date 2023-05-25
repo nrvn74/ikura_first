@@ -1,13 +1,16 @@
-@media(min-width: 769px){
-    .menu-categories{
-        scroll-behavior: initial;
-    }
+@media(min-width: 576px){
     .modals .modal .modal-inner .modal-content{
 
         .dish-photo{
             overflow: hidden;
             border-bottom-right-radius: var(--border-large);
         }
+    }
+}
+
+@media(min-width: 769px){
+    .menu-categories{
+        scroll-behavior: initial;
     }
 }
 

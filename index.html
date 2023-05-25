@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./vendor/fancybox.css">
+    <link rel="stylesheet" href="./vendor/slick.css">
     <link rel="stylesheet" href="./assets/css/style.css">
     <link rel="stylesheet" href="./assets/css/responsive.css">
     <title>Smarto Test</title>
@@ -38,7 +40,7 @@
         </div>
     </header>
     <main class="main">
-        <section class="index-top">
+        <!-- <section class="index-top">
             <div class="container">
                 <div class="top-inner">
                     <div class="content">
@@ -48,6 +50,34 @@
                     </div>
                     <div class="photo">
                         <img src="./assets/images/top_photo.jpg" alt="" class="top-photo">
+                    </div>
+                </div>
+            </div>
+        </section> -->
+        <section class="promos">
+            <div class="container">
+                <div class="promos-wrapper">
+                    <div class="promos-slider" id="promos-slider">
+                        <div class="item">
+                            <a href="./assets/images/banner.jpg" data-fancybox="gallery">
+                                <img src="./assets/images/banner.jpg" alt="" class="promo">
+                            </a>
+                        </div>
+                        <div class="item">
+                            <a href="./assets/images/banner.jpg" data-fancybox="gallery">
+                                <img src="./assets/images/banner.jpg" alt="" class="promo">
+                            </a>
+                        </div>
+                        <div class="item">
+                            <a href="./assets/images/banner.jpg" data-fancybox="gallery">
+                                <img src="./assets/images/banner.jpg" alt="" class="promo">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="slider-nav">
+                        <button class="slider-arrow prev"> <svg width="16" height="15" viewBox="0 0 16 15" fill="none" xmlns="http://www.w3.org/2000/svg"> <path fill-rule="evenodd" clip-rule="evenodd" d="M6.49212 13.9818L0.573193 8.06286C0.209977 7.69965 0.209977 7.11076 0.573193 6.74754L6.49212 0.828615C6.85534 0.4654 7.44422 0.4654 7.80744 0.828615C8.17065 1.19183 8.17065 1.78072 7.80744 2.14393L3.47624 6.47513L15.1819 6.47513V8.33527L3.47624 8.33527L7.80744 12.6665C8.17065 13.0297 8.17065 13.6186 7.80744 13.9818C7.44422 14.345 6.85534 14.345 6.49212 13.9818Z" fill="var(--accent-color)"></path> </svg> </button>
+                        <div class="slider-dots"></div>
+                        <button class="slider-arrow next"> <svg width="16" height="15" viewBox="0 0 16 15" fill="none" xmlns="http://www.w3.org/2000/svg"> <path fill-rule="evenodd" clip-rule="evenodd" d="M8.99056 0.828614L14.9095 6.74754C15.2727 7.11076 15.2727 7.69965 14.9095 8.06286L8.99056 13.9818C8.62734 14.345 8.03846 14.345 7.67524 13.9818C7.31203 13.6186 7.31203 13.0297 7.67524 12.6665L12.0064 8.33527L0.300782 8.33527L0.300782 6.47513L12.0064 6.47513L7.67524 2.14393C7.31203 1.78072 7.31203 1.19183 7.67524 0.828614C8.03846 0.4654 8.62734 0.4654 8.99056 0.828614Z" fill="var(--accent-color)"></path> </svg> </button>
                     </div>
                 </div>
             </div>
@@ -110,6 +140,7 @@
                                 <p>Cereale, Crustacee, Oua, Peste, Soia, Lapte / lactoza, Mustar, Susan. E-rui: coloranti E124, E110</p>
                                 <div class="dish-price-row">
                                     <div class="dish-weight">249 гр</div>
+                                    <button class="button button-backward">Закрыть</button>
                                     <button class="add-to-cart-button">45 <span class="currency">Lei</span></button>
                                 </div>
                             </div>
@@ -120,7 +151,7 @@
                             <img src="./assets/images/top_photo.jpg" alt="" class="photo">
                         </div>
                         <div class="dish-content">
-                            <div class="dish-name">Double California Creveti + Mango</div>
+                            <div class="dish-name">Arbue</div>
                             <div class="dish-price-row">
                                 <div class="dish-weight">249 гр</div>
                                 <button class="add-to-cart-button">45 <span class="currency">Lei</span></button>
@@ -211,7 +242,7 @@
                             <img src="./assets/images/top_photo.jpg" alt="" class="photo">
                         </div>
                         <div class="dish-content">
-                            <div class="dish-name">Double California Creveti + Mango</div>
+                            <div class="dish-name">Chesnoe</div>
                             <div class="dish-price-row">
                                 <div class="dish-weight">249 гр</div>
                                 <button class="add-to-cart-button">45 <span class="currency">Lei</span></button>
@@ -330,7 +361,7 @@
                             <img src="./assets/images/top_photo.jpg" alt="" class="photo">
                         </div>
                         <div class="dish-content">
-                            <div class="dish-name">Double California Creveti + Mango</div>
+                            <div class="dish-name">Arbue</div>
                             <div class="dish-price-row">
                                 <div class="dish-weight">249 гр</div>
                                 <button class="add-to-cart-button">45 <span class="currency">Lei</span></button>
@@ -569,5 +600,7 @@
     <footer class="footer"></footer>
 </body>
 <script src="./vendor/jquery-3.6.0.min.js"></script>
+<script src="./vendor/fancybox405.min.js"></script>
+<script src="./vendor/slick181.min.js"></script>
 <script src="./assets/js/app.js"></script>
 </html>

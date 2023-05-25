@@ -17,6 +17,7 @@
 }
 
 :root {
+    // --accent-color: #D3B382;
     --accent-color: #fff;
     --primary-background-color: #212121;
     --secondary-background-color: #3C3C3C;
@@ -39,6 +40,7 @@
 body {
     width: 100%;
     min-height: 100vh;
+    min-height: 100dvh;
     overflow-x: hidden;
     overflow-y: scroll;
     background-color: var(--primary-background-color);
@@ -185,6 +187,18 @@ p{
 
 .main{
     // margin-top: var(--header-height);
+    position: relative;
+    
+    &::before{
+        content: '';
+        position: fixed;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        background: url('../images/bg_pattern.svg') no-repeat center center/cover;
+        z-index: -1;
+        opacity: .1;
+    }
 }
 
 .header{
@@ -394,23 +408,114 @@ p{
             margin: 40px;
             border-radius: calc(var(--border-large) * 1.2);
             padding: 30px;
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            background-color: rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(20px);
+            background: url('../images/bg_pattern_2.jpg') no-repeat center center/cover;
+            // border: 2px solid rgba(255, 255, 255, 0.3);
+            // background-color: rgba(255, 255, 255, 0.2);
+            // backdrop-filter: blur(20px);
 
             .top-photo{
                 width: 100%;
                 aspect-ratio: 1/1;
                 object-fit: cover;
-                border-radius: var(--border-large);
+                // border-radius: var(--border-large);
+                border-radius: 50%;
                 box-shadow: 30px 30px 60px 0 rgba(#000, 0.5);
             }
         }
     }
 }
 
+.promos{
+    padding-top: calc(var(--header-height) + 5vh);
+    padding-bottom: 5vh;
+    width: 100%;
+    overflow: hidden;
+
+    .promos-wrapper{
+        --slider-gap: 30px;
+        margin: 0 calc(var(--slider-gap) / 2 * -1);
+
+        .promos-slider{
+
+            .slick-list{
+                overflow: visible;
+            }
+            .item{
+                width: calc(100% - var(--slider-gap));
+                margin: 0 calc(var(--slider-gap) / 2);
+                border-radius: var(--border-medium);
+                overflow: hidden;
+
+                .promo{
+                    width: 100%;
+                    height: auto;
+                    object-fit: cover;
+                    object-position: center;
+                }
+            }
+        }
+    }
+}
+
+.slider-nav{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1.45em;
+
+    .slider-dots{
+        position: relative;
+        width: auto;
+        margin: 0 20px;
+
+        .slick-dots{
+            display: flex;
+            justify-content: center;
+            margin: 0 -5px;
+            padding: 0;
+            font-size: 0;
+
+            li{
+                flex: 1 1 auto;
+                margin: 0 5px;
+                opacity: .5;
+                cursor: pointer;
+    
+                button{
+                    font-size: 0;
+                    width: 40px;
+                    height: 2px;
+                    background: #ffff;
+                }
+                &.slick-active{
+                    opacity: 1;
+                }
+            }
+        }
+    }
+    .slider-arrow{
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 30px;
+        height: 30px;
+        // border: 1px solid rgba(#fff, 0.3);
+        // border-radius: 50%;
+        padding: .2em;
+
+        svg, img{
+            width: 60%;
+            height: auto;
+        }
+        svg path{
+            fill: var(--accent-color);
+        }
+    }
+}
+
 .menu-head{
     padding: 1em 0;
+    background-color: var(--primary-background-color);
 }
 
 .menu-head-inner{
@@ -551,8 +656,8 @@ p{
             }
             .menu-category-selector{
                 display: inline-block;
-                background-color: rgba(#fff, 0.1);
-                border: 1px solid rgba(#fff, 0.3);
+                background-color: rgba(#fff, 0.05);
+                border: 1px solid rgba(#fff, 0.15);
                 backdrop-filter: blur(10px);
                 border-radius: 200px;
                 padding: 1em 2em;
@@ -564,12 +669,12 @@ p{
                     margin-right: 1em;
                 }
                 &.active{
-                    background-color: #fff;
+                    background-color: var(--accent-color);
                     color: #000;
                 }
                 &:not(.active):hover{
                     border: 1px solid rgba(#fff, 0.2);
-                    background-color: rgba(#fff, 0.05);
+                    background-color: rgba(#fff, 0.15);
                 }
             }
         }
@@ -602,9 +707,10 @@ p{
             line-height: 1.5;
             border-radius: var(--border-medium);
             overflow: hidden;
-            background-color: rgba(#fff, 0.1);
-            border: 1px solid rgba(#fff, 0.1);
+            background-color: rgba(#fff, 0.07);
+            border: 1px solid rgba(#fff, 0.08);
             transition: all .3s ease-out;
+            backdrop-filter: blur(15px);
             cursor: pointer;
 
             &:hover{
@@ -627,6 +733,19 @@ p{
             }
         }
     }
+}
+
+#search-empty-text{
+    max-width: calc(var(--container-width) + (var(--container-paddings) / 2));
+    width: 100%;
+    padding: 0 var(--container-paddings);
+    margin: 1em auto 3em auto;
+    font-family: 'Mulish';
+    font-weight: 900;
+    color: #fff;
+    text-transform: none;
+    line-height: 1.3;
+    font-size: calc(var(--font-size-normal) * 2);
 }
 
 .dish-photo .photo{
@@ -690,19 +809,20 @@ p{
         height: 100vh;
         height: 100dvh;
         background: rgba(#000, 0.7);
-        backdrop-filter: blur(5px);
+        backdrop-filter: blur(3px);
         z-index: 9999;
+        overflow-y: scroll;
+        -ms-overflow-style: none;
+        scrollbar-width: none;
 
         .modal-inner{
             display: flex;
-            height: 100%;
+            height: auto;
+            min-height: 100%;
             width: 100%;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            overflow-y: scroll;
-            -ms-overflow-style: none;
-            scrollbar-width: none;
 
             .modal-content{
                 display: flex;
@@ -734,6 +854,10 @@ p{
                     .allergo{
                         font-weight: 800;
                         margin: 1.3em 0;
+                    }
+                    .button{
+                        margin-top: 0;
+                        font-size: .825em;
                     }
                 }
             }

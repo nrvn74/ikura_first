@@ -2,6 +2,20 @@
 
     "use strict";
 
+    function moveHistory(){
+        console.log('Подменяем историю...');
+        history.pushState(null, null, window.top.location.pathname + window.top.location.search);
+    }
+    
+    function preventLeavingSite(){
+        moveHistory();
+    
+        document.addEventListener('backbutton', moveHistory, false);
+        window.addEventListener('popstate', moveHistory);
+    }
+    
+    preventLeavingSite();
+
     function setProperties(){
         $(':root').css({
             '--header-height': $('header').innerHeight() + 'px',
@@ -14,6 +28,31 @@
             $('.menu-search').css('--search-width', $('.menu-search').innerWidth() + 'px');
         }, 500);
     }
+
+    function initPromoSlider(){
+        $('#promos-slider').slick({
+            dots: true,
+            appendDots: $('.promos-wrapper .slider-nav').find('.slider-dots'),
+            arrows: true,
+            prevArrow: $('.promos-wrapper .slider-nav').find('.prev'),
+            nextArrow: $('.promos-wrapper .slider-nav').find('.next'),
+            infinite: false,
+            speed: 300,
+            slidesToShow: 2,
+            slidesToScroll: 1,
+            swipeToSlide: true,
+            responsive: [
+                {
+                    breakpoint: 768,
+                    settings: {
+                        slidesToShow: 1,
+                    }
+                }
+            ]
+        });
+    }
+
+    initPromoSlider();
     
     function scrollToElement(el){
         if(!el) return;
@@ -135,6 +174,12 @@
         let wrapper = $('.menu-search');
         let input = $('#menu-search-input');
 
+        let restoreDishes = () => {
+            $('#search-empty-text').remove();
+            $('.dish-item').show();
+            $('.dish-block').show();
+        };
+
         $('.menu-search-toggle').click(() => {
             wrapper.toggleClass('active');
 
@@ -144,19 +189,44 @@
         $('.menu-search-clear').click(() => {
             input.val('');
             wrapper.removeClass('active');
+            restoreDishes();
         });
 
         $(input).keyup(function(){
+            restoreDishes();
+            
             if(input.val().length < 3) return;
 
-            let search = input.val();
+            let keyword = input.val();
             let categories = $('.dish-block');
+            let visibleCounter = 0;
 
             if(!categories) return;
 
-            // categories.forEach(function(){
+            categories.each(function(){
+                let hasItems = false;
+                let dishItems = $(this).find('.dish-item');
 
-            // });
+                dishItems.each(function(){
+                    let title = $(this).find('div.dish-name').text().toLowerCase();
+
+                    if(title.indexOf(keyword) !== -1){
+                        hasItems = true;
+                    } else{
+                        $(this).hide();
+                    }
+                });
+
+                if(hasItems === false){
+                    $(this).hide()
+                } else{
+                    visibleCounter++;
+                };
+            });
+
+            if(visibleCounter === 0 && $('#search-empty-text').length === 0){
+                $('main').append('<div id="search-empty-text">Ничего не найдено :(</div>');
+            }
         });
     }
 
@@ -168,13 +238,27 @@
         $(this).addClass('added');
     });
 
-    $('#nav-toggle').click(() => {
-        $('header').toggleClass('header-open');
+    $(document).click(e => {
+        if($(e.target).is('#nav-toggle') || $(e.target.parentElement).is('#nav-toggle')){
+            $('header').toggleClass('header-open');
+        }
     });
     
     $(document).ready(function(){
         setProperties();
         attachMenuCategories();
+
+        Fancybox.bind('[data-fancybox]', {
+            Toolbar: false,
+            closeButton: 'top',
+            placeFocusBack: false,
+            dragToClose: false,
+            animated: false,
+            Image: {
+                zoom: false,
+                click: 'close',
+            },
+        });
     
         $('.menu-category-selector').click(function(){
             $('.menu-category-selector.active').removeClass('active');
@@ -209,7 +293,12 @@
             if($('header').hasClass('header-open') && $(e.target).is('button, nav, li') === false){
                 $('header').removeClass('header-open');
             }
-        }); 
+        });
+
+        $(document).on('click', '.modal-dish .button-backward', function(){
+            $('.modal-dish.open').removeClass('open').fadeToggle(300);
+            $('body').css('overflow-y', 'scroll');
+        });
     });
 
 })(jQuery, window, document);
